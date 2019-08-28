@@ -19,14 +19,14 @@ module.exports = {
         alias: {
 			"@components": path.resolve(__dirname, "../components"),
             "@example": path.resolve(__dirname, "../example"),
-            "@fonts": "example/fonts",
-			"@asstes": "example/assets",
-			"@containers": "example/containers",
-			"@mock": "example/mock",
-			"@router": "example/router",
-			"@store": "example/store",
-			"@styles": "example/styles",
-			"@utils": "example/utils"
+            "@fonts": "@example/fonts",
+			"@asstes": "@example/assets",
+			"@containers": "@example/containers",
+			"@mock": "@example/mock",
+			"@router": "@example/router",
+			"@store": "@example/store",
+			"@styles": "@example/styles",
+			"@utils": "@example/utils"
 		},
 		extensions: [".html", ".js", ".jsx", ".ts", ".tsx", ".css", ".scss", ".sass", ".less", ".json"] //自动解析的扩展
     },

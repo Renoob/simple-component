@@ -1,8 +1,8 @@
+import { fetchTime } from "@store/time/middleware";
 import * as React from "react";
 import { connect } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch  } from "redux-thunk";
-import { fetchTime } from "STORE/time/middleware";
 import "./index.less";
 
 interface IProps {

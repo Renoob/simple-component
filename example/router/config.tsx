@@ -5,13 +5,13 @@ const Loading = () => <div></div>;
 const timeout = 1000;
 
 export const Home = Loadable({
-    loader: () => import("CONTAINERS/home/index"),
+    loader: () => import("@containers/home/index"),
     loading: Loading,
     timeout,
 });
 
 export const List = Loadable({
-    loader: () => import("CONTAINERS/list/index"),
+    loader: () => import("@containers/list/index"),
     loading: Loading,
     timeout,
 });
