@@ -1,4 +1,4 @@
-import Menu from "COMPONENTS/menu";
+import Menu from "@components/menu";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";

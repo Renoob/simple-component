@@ -1,13 +1,13 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const base = require('./webpack.config.base');
+const path = require("path");
+const merge = require("webpack-merge");
+const base = require("./webpack.config.base");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-// const glob = require('glob');
-// const PurgecssPlugin = require('purgecss-webpack-plugin');
+// const glob = require("glob");
+// const PurgecssPlugin = require("purgecss-webpack-plugin");
 
 module.exports = merge(base, {
-    mode: 'production',
+    mode: "production",
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -30,12 +30,12 @@ module.exports = merge(base, {
             test: /\.css$/,
             use: [
                 MiniCssExtractPlugin.loader,
-                'css-loader',
+                "css-loader",
                 {
-                    loader: 'postcss-loader',
+                    loader: "postcss-loader",
                     options: {
                         config: {
-                            path: path.resolve(__dirname, './postcss.config.js')
+                            path: path.resolve(__dirname, "./postcss.config.js")
                         }
                     }
                 }
@@ -44,85 +44,85 @@ module.exports = merge(base, {
             test: /^(?!.*\.module).*\.(scss|sass)$/, // 普通模式
             use: [
                 MiniCssExtractPlugin.loader,
-                'css-loader',
+                "css-loader",
                 {
-                    loader: 'postcss-loader',
+                    loader: "postcss-loader",
                     options: {
                         config: {
-                            path: path.resolve(__dirname, './postcss.config.js')
+                            path: path.resolve(__dirname, "./postcss.config.js")
                         }
                     }
                 },
-                'sass-loader'
+                "sass-loader"
             ]
         }, {
             test: /^(.*\.module).*\.(scss|sass)$/, // css module模式
             use: [
                 MiniCssExtractPlugin.loader,
                 {
-                    loader: 'css-loader',
+                    loader: "css-loader",
                     options: {
                         modules: {
-                            localIdentName: '[local]_[hash:base64:5]',
+                            localIdentName: "[local]_[hash:base64:5]",
                         },
                     }
                 },
                 {
-                    loader: 'postcss-loader',
+                    loader: "postcss-loader",
                     options: {
                         config: {
-                            path: path.resolve(__dirname, './postcss.config.js')
+                            path: path.resolve(__dirname, "./postcss.config.js")
                         }
                     }
                 },
-                'sass-loader'
+                "sass-loader"
             ]
         }, {
             test: /^(?!.*\.module).*\.less$/, // 普通模式
             use: [
                 MiniCssExtractPlugin.loader,
-                'css-loader',
+                "css-loader",
                 {
-                    loader: 'postcss-loader',
+                    loader: "postcss-loader",
                     options: {
                         config: {
-                            path: path.resolve(__dirname, './postcss.config.js')
+                            path: path.resolve(__dirname, "./postcss.config.js")
                         }
                     }
                 },
-                'less-loader'
+                "less-loader"
             ]
         }, {
             test: /^(.*\.module).*\.less$/, // css module模式
             use: [
                 MiniCssExtractPlugin.loader,
                 {
-                    loader: 'css-loader',
+                    loader: "css-loader",
                     options: {
                         modules: {
-                            localIdentName: '[local]_[hash:base64:5]',
+                            localIdentName: "[local]_[hash:base64:5]",
                         },
                     }
                 },
                 {
-                    loader: 'postcss-loader',
+                    loader: "postcss-loader",
                     options: {
                         config: {
-                            path: path.resolve(__dirname, './postcss.config.js')
+                            path: path.resolve(__dirname, "./postcss.config.js")
                         }
                     }
                 },
-                'less-loader'
+                "less-loader"
             ]
         }]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles/[name].[chunkhash:5].css'
+            filename: "styles/[name].[chunkhash:5].css"
         }),
         // 清除无用 css
         // new PurgecssPlugin({
-        //     paths: glob.sync(path.resolve(__dirname, '../src/**/*'), { nodir: true })
+        //     paths: glob.sync(path.resolve(__dirname, "../components/**/*"), { nodir: true })
         // })
     ]
 })

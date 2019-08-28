@@ -1,7 +1,7 @@
+import store from "@store/configStore";
 import * as React from "react";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
-import store from "STORE/configStore";
 import Main from "./main";
 
 const App = () => (

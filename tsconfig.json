@@ -12,23 +12,23 @@
         "strictNullChecks": true,
         "baseUrl": ".",
         "paths": {
-            "src/*": ["./src/*"],
-            "FONTS/*": ["./src/fonts/*"],
-			"ASSETS/*": ["./src/assets/*"],
-			"COMPONENTS/*": ["./src/components/*"],
-			"CONTAINERS/*": ["./src/containers/*"],
-			"MOCK/*": ["./src/mock/*"],
-			"MODULES/*": ["./src/modules/*"],
-			"ROUTER/*": ["./src/router/*"],
-			"STORE/*": ["./src/store/*"],
-			"STYLES/*": ["./src/styles/*"],
-			"UTILS/*": ["./src/utils/*"]
-        }
+            "@components/*": ["./components/*"],
+            "@example/*": ["./example/*"],
+            "@fonts/*": ["./example/fonts/*"],
+			"@asstes/*": ["./example/assets/*"],
+			"@containers/*": ["./example/containers/*"],
+			"@mock/*": ["./example/mock/*"],
+			"@router/*": ["./example/router/*"],
+			"@store/*": ["./example/store/*"],
+			"@styles/*": ["./example/styles/*"],
+			"@utils/*": ["./example/utils/*"],
+        },
     },
     "include": [
-        "./src/**/*"
+        "./components/**/*",
+        "./example/**/*"
     ],
     "exclude": [
         "node_modules"
-    ]
+    ],
 }

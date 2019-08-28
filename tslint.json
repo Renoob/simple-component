@@ -1,6 +1,6 @@
 {
     "extends": "tslint:recommended",
-    "rulesDirectory": ["./src"],
+    "rulesDirectory": ["./components", "./example"],
     "linterOptions": {
         "exclude": ["**/node_modules/**"]
     }

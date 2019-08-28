@@ -1,7 +1,7 @@
 {
-  "name": "simple-react-cli",
+  "name": "simple-component",
   "version": "1.0.0",
-  "description": "webpack-react脚手架",
+  "description": "react组件库",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --open",
