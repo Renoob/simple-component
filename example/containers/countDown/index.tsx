@@ -1,5 +1,5 @@
-import * as React from "react";
 import CountDown from "@components/countDown";
+import * as React from "react";
 
 class CountDownExample extends React.Component {
     public render() {
