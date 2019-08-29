@@ -4,14 +4,13 @@ import * as Loadable from "react-loadable";
 const Loading = () => <div></div>;
 const timeout = 1000;
 
-export const Home = Loadable({
+const Home = Loadable({
     loader: () => import("@containers/home/index"),
     loading: Loading,
     timeout,
 });
-
-export const List = Loadable({
-    loader: () => import("@containers/list/index"),
+const CountDown = Loadable({
+    loader: () => import("@containers/countDown/index"),
     loading: Loading,
     timeout,
 });
@@ -21,9 +20,9 @@ const routerConfig = [{
     exact: true,
     path: "/",
 }, {
-    component: List,
+    component: CountDown,
     exact: true,
-    path: "/list",
+    path: "/countDown",
 }];
 
 export default routerConfig;

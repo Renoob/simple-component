@@ -7,7 +7,7 @@ const container = document.getElementById("container");
 ReactDOM.render(<App />, container);
 
 if (module.hot) {
-    module.hot.accept("ROUTER/app", () => {
+    module.hot.accept("@router/app", () => {
         ReactDOM.render(<App />, container);
     });
 }

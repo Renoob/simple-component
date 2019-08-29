@@ -1,4 +1,4 @@
-import Menu from "@components/menu";
+import Navigation from "@containers/navigation";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";
@@ -8,19 +8,21 @@ class Main extends React.Component<RouteComponentProps> {
     public render() {
         const module = (
             <>
-                <Menu />
-                <Switch>
-                    {
-                        routerConfig.map((item) => (
-                            <Route
-                                key = { item.path }
-                                path = { item.path }
-                                component = { item.component }
-                                exact = { item.exact }
-                            />
-                        ))
-                    }
-                </Switch>
+                <Navigation />
+                <div style = {{ marginLeft: "300px" }}>
+                    <Switch>
+                        {
+                            routerConfig.map((item) => (
+                                <Route
+                                    key = { item.path }
+                                    path = { item.path }
+                                    component = { item.component }
+                                    exact = { item.exact }
+                                />
+                            ))
+                        }
+                    </Switch>
+                </div>
             </>
         );
 
