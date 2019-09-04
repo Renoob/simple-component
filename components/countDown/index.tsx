@@ -1,8 +1,8 @@
 import * as React from "react";
 
 interface IProps {
+    endTime: number; // 结束时间
     startTime: number; // 开始时间
-    endTime?: number; // 结束时间
     type: string; // 倒计时类型
 }
 
@@ -11,11 +11,13 @@ interface IState {
     diffHour: number;
     diffMin: number;
     diffSec: number;
+    endTime: number;
     startTime: number;
 }
 
 class CountDown extends React.Component<IProps, IState> {
     public static defaultProps = {
+        endTime: new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000,
         startTime: new Date().getTime(),
         type: "day",
     };
@@ -30,6 +32,7 @@ class CountDown extends React.Component<IProps, IState> {
             diffHour: diff.diffHour, // 时
             diffMin: diff.diffMin, // 分
             diffSec: diff.diffSec, // 秒
+            endTime: props.endTime, // 结束时间
             startTime: props.startTime, // 开始时间
         };
     }
@@ -57,16 +60,19 @@ class CountDown extends React.Component<IProps, IState> {
     }
 
     public calculation = (startTime: number) => {
-        const { type } = this.props;
-        const diffDay = 0; // 天
-        let diffHour = 0; // 时
-        let diffMin = 0; // 分
-        let diffSec = 0; // 秒
-        if (type === "day") {
-            diffHour = 24 - new Date(startTime).getHours();
-            diffMin = 60 - new Date(startTime).getMinutes();
-            diffSec = 60 - new Date(startTime).getSeconds();
-        }
+        const diffTime = this.props.endTime - startTime;
+        // 天
+        const diffDay = Math.floor(diffTime / ( 24 * 60 * 60 * 1000 ));
+        const leave1 = diffTime % ( 24 * 60 * 60 * 1000 );
+        // 时
+        const diffHour = Math.floor(leave1 / ( 60 * 60 * 1000 ));
+        const leave2 = leave1 % ( 60 * 60 * 1000 );
+        // 分
+        const diffMin = Math.floor(leave2 / ( 60 * 1000 ));
+        const leave3 = leave2 % ( 60 * 1000 );
+        // 秒
+        const diffSec = Math.floor(leave3 / ( 1000 ));
+
         return { diffDay, diffHour, diffMin, diffSec };
     }
 
@@ -74,7 +80,28 @@ class CountDown extends React.Component<IProps, IState> {
         const { diffDay, diffHour, diffMin, diffSec } = this.state;
 
         const module = (
-            <span>{ diffDay } 日 { diffHour } 时 { diffMin } 分 { diffSec } 秒</span>
+            <div>
+                <span>
+                    <span>{ diffDay > 10 ? diffDay.toString().split("")[0] : 0 }</span>
+                    <span>{ diffDay > 10 ? diffDay.toString().split("")[1] : diffDay }</span>
+                </span>
+                <span>天</span>
+                <span>
+                    <span>{ diffHour > 10 ? diffHour.toString().split("")[0] : 0 }</span>
+                    <span>{ diffHour > 10 ? diffHour.toString().split("")[1] : diffHour }</span>
+                </span>
+                <span>时</span>
+                <span>
+                    <span>{ diffMin > 10 ? diffMin.toString().split("")[0] : 0 }</span>
+                    <span>{ diffMin > 10 ? diffMin.toString().split("")[1] : diffMin }</span>
+                </span>
+                <span>分</span>
+                <span>
+                    <span>{ diffSec > 10 ? diffSec.toString().split("")[0] : 0 }</span>
+                    <span>{ diffSec > 10 ? diffSec.toString().split("")[1] : diffSec }</span>
+                </span>
+                <span>秒</span>
+            </div>
         );
         return module;
     }
