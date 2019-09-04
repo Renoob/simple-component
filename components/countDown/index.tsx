@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface IProps {
-    endTime: number; // 结束时间
+    endTime?: number; // 结束时间
     startTime: number; // 开始时间
     type: string; // 倒计时类型
 }
@@ -17,7 +17,6 @@ interface IState {
 
 class CountDown extends React.Component<IProps, IState> {
     public static defaultProps = {
-        endTime: new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000,
         startTime: new Date().getTime(),
         type: "day",
     };
@@ -32,9 +31,19 @@ class CountDown extends React.Component<IProps, IState> {
             diffHour: diff.diffHour, // 时
             diffMin: diff.diffMin, // 分
             diffSec: diff.diffSec, // 秒
-            endTime: props.endTime, // 结束时间
+            endTime: this.initEndTime(), // 结束时间
             startTime: props.startTime, // 开始时间
         };
+    }
+
+    public initEndTime = () => {
+        const { type } = this.props;
+        switch (type) {
+            case "day":
+                return new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000;
+            default:
+                return new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000;
+        }
     }
 
     public componentDidMount() {
@@ -60,7 +69,8 @@ class CountDown extends React.Component<IProps, IState> {
     }
 
     public calculation = (startTime: number) => {
-        const diffTime = this.props.endTime - startTime;
+        const endTime = this.state ? this.state.endTime : this.initEndTime();
+        const diffTime = endTime - startTime;
         // 天
         const diffDay = Math.floor(diffTime / ( 24 * 60 * 60 * 1000 ));
         const leave1 = diffTime % ( 24 * 60 * 60 * 1000 );
