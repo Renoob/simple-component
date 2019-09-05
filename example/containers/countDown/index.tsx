@@ -5,7 +5,7 @@ class CountDownExample extends React.Component {
     public render() {
         return (
             <div>
-                <CountDown />
+                <CountDown type = "year" />
             </div>
         );
     }

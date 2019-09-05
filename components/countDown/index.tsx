@@ -31,18 +31,33 @@ class CountDown extends React.Component<IProps, IState> {
             diffHour: diff.diffHour, // 时
             diffMin: diff.diffMin, // 分
             diffSec: diff.diffSec, // 秒
-            endTime: this.initEndTime(), // 结束时间
+            endTime: props.endTime ? props.endTime : this.initEndTime(), // 结束时间
             startTime: props.startTime, // 开始时间
         };
     }
 
     public initEndTime = () => {
         const { type } = this.props;
+        const year = new Date().getFullYear();
+        const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+        const monthDayArr = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
         switch (type) {
             case "day":
-                return new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000;
+                return new Date().setHours(24, 0, 0, 0);
+            case "week":
+                const leaveWeek = 7 - new Date().getDay();
+                return new Date().setHours(24, 0, 0, 0) + leaveWeek * (24 * 60 * 60 * 1000);
+            case "month":
+                const leaveMonth = monthDayArr[new Date().getMonth()] - new Date().getDate();
+                return new Date().setHours(24, 0, 0, 0) + leaveMonth * (24 * 60 * 60 * 1000);
+            case "year":
+                let leaveYear = 0;
+                monthDayArr.slice(new Date().getMonth()).forEach((item: number) => {
+                    leaveYear += item;
+                });
+                return new Date().setHours(24, 0, 0, 0) + leaveYear * (24 * 60 * 60 * 1000);
             default:
-                return new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000;
+                return new Date().setHours(24, 0, 0, 0);
         }
     }
 
@@ -94,6 +109,7 @@ class CountDown extends React.Component<IProps, IState> {
                 <span>
                     <span>{ diffDay > 10 ? diffDay.toString().split("")[0] : 0 }</span>
                     <span>{ diffDay > 10 ? diffDay.toString().split("")[1] : diffDay }</span>
+                    <span>{ diffDay > 10 ? diffDay.toString().split("")[2] : diffDay }</span>
                 </span>
                 <span>天</span>
                 <span>
