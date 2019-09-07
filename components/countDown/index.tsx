@@ -55,6 +55,7 @@ class CountDown extends React.Component<IProps, IState> {
                 monthDayArr.slice(new Date().getMonth()).forEach((item: number) => {
                     leaveYear += item;
                 });
+                leaveYear = leaveYear - new Date().getDate();
                 return new Date().setHours(24, 0, 0, 0) + leaveYear * (24 * 60 * 60 * 1000);
             default:
                 return new Date().setHours(24, 0, 0, 0);
@@ -107,24 +108,24 @@ class CountDown extends React.Component<IProps, IState> {
         const module = (
             <div>
                 <span>
-                    <span>{ diffDay > 10 ? diffDay.toString().split("")[0] : 0 }</span>
-                    <span>{ diffDay > 10 ? diffDay.toString().split("")[1] : diffDay }</span>
-                    <span>{ diffDay > 10 ? diffDay.toString().split("")[2] : diffDay }</span>
+                    { diffDay >= 100 ? <span>{ parseInt((diffDay / 100).toString(), 10) }</span> : "" }
+                    <span>{ parseInt(((diffDay % 100) / 10).toString(), 10) }</span>
+                    <span>{ diffDay % 10 }</span>
                 </span>
                 <span>天</span>
                 <span>
-                    <span>{ diffHour > 10 ? diffHour.toString().split("")[0] : 0 }</span>
-                    <span>{ diffHour > 10 ? diffHour.toString().split("")[1] : diffHour }</span>
+                    <span>{ parseInt((diffHour / 10).toString(), 10) }</span>
+                    <span>{ diffHour % 10 }</span>
                 </span>
                 <span>时</span>
                 <span>
-                    <span>{ diffMin > 10 ? diffMin.toString().split("")[0] : 0 }</span>
-                    <span>{ diffMin > 10 ? diffMin.toString().split("")[1] : diffMin }</span>
+                    <span>{ parseInt((diffMin / 10).toString(), 10) }</span>
+                    <span>{ diffMin % 10 }</span>
                 </span>
                 <span>分</span>
                 <span>
-                    <span>{ diffSec > 10 ? diffSec.toString().split("")[0] : 0 }</span>
-                    <span>{ diffSec > 10 ? diffSec.toString().split("")[1] : diffSec }</span>
+                    <span>{ parseInt((diffSec / 10).toString(), 10) }</span>
+                    <span>{ diffSec % 10 }</span>
                 </span>
                 <span>秒</span>
             </div>
