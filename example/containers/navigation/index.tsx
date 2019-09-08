@@ -6,8 +6,8 @@ class Navigation extends React.Component {
     public render() {
         const module = (
             <div className = { styles.navigation }>
-                <NavLink to = "/">simple-component</NavLink>
-                <NavLink to = "/countDown">倒计时 CountDown</NavLink>
+                <NavLink exact to = "/" activeClassName = { styles.active }>simple-component</NavLink>
+                <NavLink exact to = "/countDown" activeClassName = { styles.active }>倒计时 CountDown</NavLink>
             </div>
         );
         return module;

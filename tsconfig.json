@@ -1,15 +1,16 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
         "module": "commonjs",
         "target": "es5",
-        "jsx": "react",
-        "moduleResolution": "node",
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
+        "sourceMap": true,
         "noImplicitAny": true,
-        "strictNullChecks": true,
+        "removeComments": true,
+        "jsx": "react",
+        "outDir": "./dist/",
+        "watch": true,
+        "noImplicitReturns": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
         "baseUrl": ".",
         "paths": {
             "@components/*": ["./components/*"],
@@ -22,7 +23,7 @@
 			"@store/*": ["./example/store/*"],
 			"@styles/*": ["./example/styles/*"],
 			"@utils/*": ["./example/utils/*"],
-        },
+        }
     },
     "include": [
         "./components/**/*",
@@ -30,5 +31,5 @@
     ],
     "exclude": [
         "node_modules"
-    ],
+    ]
 }

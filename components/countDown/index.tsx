@@ -22,6 +22,7 @@ class CountDown extends React.Component<IProps, IState> {
     };
 
     public localTime = new Date().getTime(); // 本地时间(用于raf)
+    public countDownRaf: number;
 
     public constructor(props: IProps) {
         super(props);
@@ -66,7 +67,12 @@ class CountDown extends React.Component<IProps, IState> {
         this.raf();
     }
 
+    public componentWillUnmount() {
+        cancelAnimationFrame(this.countDownRaf);
+    }
+
     public raf = () => {
+        this.countDownRaf = requestAnimationFrame(this.raf);
         const newLocalTime = new Date().getTime();
         const localDiff = newLocalTime - this.localTime;
         if (localDiff >= 1000) {
@@ -81,7 +87,6 @@ class CountDown extends React.Component<IProps, IState> {
                 startTime: now,
             });
         }
-        window.requestAnimationFrame(this.raf);
     }
 
     public calculation = (startTime: number) => {
