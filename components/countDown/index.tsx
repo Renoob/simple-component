@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./index.less";
 
 interface IProps {
     endTime?: number; // 结束时间
@@ -72,20 +73,24 @@ class CountDown extends React.Component<IProps, IState> {
     }
 
     public raf = () => {
-        this.countDownRaf = requestAnimationFrame(this.raf);
-        const newLocalTime = new Date().getTime();
-        const localDiff = newLocalTime - this.localTime;
-        if (localDiff >= 1000) {
-            this.localTime = newLocalTime;
-            const now = this.state.startTime + localDiff;
-            const diff = this.calculation(now);
-            this.setState({
-                diffDay: diff.diffDay,
-                diffHour: diff.diffHour,
-                diffMin: diff.diffMin,
-                diffSec: diff.diffSec,
-                startTime: now,
-            });
+        if (this.state.endTime > this.state.startTime) {
+            this.countDownRaf = requestAnimationFrame(this.raf);
+            const newLocalTime = new Date().getTime();
+            const localDiff = newLocalTime - this.localTime;
+            if (localDiff >= 1000) {
+                this.localTime = newLocalTime;
+                const now = this.state.startTime + localDiff;
+                const diff = this.calculation(now);
+                this.setState({
+                    diffDay: diff.diffDay,
+                    diffHour: diff.diffHour,
+                    diffMin: diff.diffMin,
+                    diffSec: diff.diffSec,
+                    startTime: now,
+                });
+            }
+        } else {
+            cancelAnimationFrame(this.countDownRaf);
         }
     }
 
@@ -111,29 +116,56 @@ class CountDown extends React.Component<IProps, IState> {
         const { diffDay, diffHour, diffMin, diffSec } = this.state;
 
         const module = (
-            <div>
-                <span>
-                    { diffDay >= 100 ? <span>{ parseInt((diffDay / 100).toString(), 10) }</span> : "" }
-                    <span>{ parseInt(((diffDay % 100) / 10).toString(), 10) }</span>
-                    <span>{ diffDay % 10 }</span>
+            <span className = "countDown">
+                <span className = "count">
+                    { diffDay >= 100 ? <span className = "item">
+                            <i></i>
+                            <span>{ parseInt((diffDay / 100).toString(), 10) }</span>
+                        </span> : "" }
+                    <span className = "item">
+                        <i></i>
+                        <span>{ parseInt(((diffDay % 100) / 10).toString(), 10) }</span>
+                    </span>
+                    <span className = "item">
+                        <i></i>
+                        <span>{ diffDay % 10 }</span>
+                    </span>
                 </span>
-                <span>天</span>
-                <span>
-                    <span>{ parseInt((diffHour / 10).toString(), 10) }</span>
-                    <span>{ diffHour % 10 }</span>
+                <span className = "text">天</span>
+                <span className = "count">
+                    <span className = "item">
+                        <i></i>
+                        <span>{ parseInt((diffHour / 10).toString(), 10) }</span>
+                    </span>
+                    <span className = "item">
+                        <i></i>
+                        <span>{ diffHour % 10 }</span>
+                    </span>
                 </span>
-                <span>时</span>
-                <span>
-                    <span>{ parseInt((diffMin / 10).toString(), 10) }</span>
-                    <span>{ diffMin % 10 }</span>
+                <span className = "text">时</span>
+                <span className = "count">
+                    <span className = "item">
+                        <i></i>
+                        <span>{ parseInt((diffMin / 10).toString(), 10) }</span>
+                    </span>
+                    <span className = "item">
+                        <i></i>
+                        <span>{ diffMin % 10 }</span>
+                    </span>
                 </span>
-                <span>分</span>
-                <span>
-                    <span>{ parseInt((diffSec / 10).toString(), 10) }</span>
-                    <span>{ diffSec % 10 }</span>
+                <span className = "text">分</span>
+                <span className = "count">
+                    <span className = "item">
+                        <i></i>
+                        <span>{ parseInt((diffSec / 10).toString(), 10) }</span>
+                    </span>
+                    <span className = "item">
+                        <i></i>
+                        <span>{ diffSec % 10 }</span>
+                    </span>
                 </span>
-                <span>秒</span>
-            </div>
+                <span className = "text">秒</span>
+            </span>
         );
         return module;
     }
