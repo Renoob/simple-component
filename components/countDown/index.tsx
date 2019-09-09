@@ -22,6 +22,15 @@ class CountDown extends React.Component<IProps, IState> {
         type: "day",
     };
 
+    public static getDerivedStateFromProps(props: IProps, state: IState) {
+        if (props.endTime !== state.endTime) {
+            return {
+                endTime: props.endTime,
+            };
+        }
+        return null;
+    }
+
     public localTime = new Date().getTime(); // 本地时间(用于raf)
     public countDownRaf: number;
 
@@ -66,6 +75,12 @@ class CountDown extends React.Component<IProps, IState> {
 
     public componentDidMount() {
         this.raf();
+    }
+
+    public componentDidUpdate(prevProps: IProps) {
+        if (this.props.endTime !== prevProps.endTime) {
+            this.raf();
+        }
     }
 
     public componentWillUnmount() {
