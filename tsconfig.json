@@ -22,7 +22,7 @@
 			"@router/*": ["./example/router/*"],
 			"@store/*": ["./example/store/*"],
 			"@styles/*": ["./example/styles/*"],
-			"@utils/*": ["./example/utils/*"],
+			"@utils/*": ["./example/utils/*"]
         }
     },
     "include": [
