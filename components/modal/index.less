@@ -1,0 +1,32 @@
+.modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    z-index: 10;
+    .content{
+        width: 6.2rem;
+        height: 4.28rem;
+        background-color: #ffffff;
+        border-radius: 0.08rem;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: popUp 0.1s linear 1;
+        @keyframes popUp {
+            from { transform: translate(-50%, -50%) scale(0); }
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+        .close{
+            display: block;
+            width: 0.59rem;
+            height: 0.59rem;
+            position: absolute;
+            top: -0.59rem;
+            right: -0.59rem;
+        }
+    }
+}

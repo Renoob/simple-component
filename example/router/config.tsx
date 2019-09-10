@@ -14,6 +14,12 @@ const CountDown = Loadable({
     loading: Loading,
     timeout,
 });
+const Modal = Loadable({
+    loader: () => import("@containers/modal/index"),
+    loading: Loading,
+    timeout,
+});
+
 
 const routerConfig = [{
     component: Home,
@@ -23,6 +29,10 @@ const routerConfig = [{
     component: CountDown,
     exact: true,
     path: "/countDown",
+}, {
+    component: Modal,
+    exact: true,
+    path: "/modal",
 }];
 
 export default routerConfig;
