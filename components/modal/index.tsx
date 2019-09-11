@@ -4,13 +4,13 @@ import "./index.less";
 
 interface IModalProps {
     visible: boolean;
-    children: Element;
-    onClose: () => void;
+    children: React.ReactNode;
+    onClose?: React.MouseEventHandler<HTMLElement>;
 }
 
 class Modal extends React.Component<IModalProps, {}> {
 
-    public modal = null;
+    public modal: Element;
 
     public componentDidMount() {
         if (this.props.visible) {

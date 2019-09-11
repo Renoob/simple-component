@@ -19,7 +19,11 @@ const Modal = Loadable({
     loading: Loading,
     timeout,
 });
-
+const Button = Loadable({
+    loader: () => import("@containers/button/index"),
+    loading: Loading,
+    timeout,
+});
 
 const routerConfig = [{
     component: Home,
@@ -33,6 +37,10 @@ const routerConfig = [{
     component: Modal,
     exact: true,
     path: "/modal",
+}, {
+    component: Button,
+    exact: true,
+    path: "/button",
 }];
 
 export default routerConfig;
