@@ -8,7 +8,8 @@ import routerConfig from "./config";
 class Main extends React.Component<RouteComponentProps> {
     public render() {
         const module = (
-            <Theme>
+            <>
+                <Theme />
                 <Navigation />
                 <div style = {{ marginLeft: "300px" }}>
                     <Switch>
@@ -24,7 +25,7 @@ class Main extends React.Component<RouteComponentProps> {
                         }
                     </Switch>
                 </div>
-            </Theme>
+            </>
         );
 
         return module;

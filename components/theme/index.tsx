@@ -1,76 +1,87 @@
 import * as React from "react";
+import "./index.less";
+import Point from "./point";
 
-interface IThemeProps {
-    children: React.ReactNode;
-}
-
-class Theme extends React.Component<IThemeProps, {}> {
+class Theme extends React.Component<{}, {}> {
     public canvas = React.createRef<HTMLCanvasElement>();
 
-    public componentDidMount() {
-        const ele = this.canvas.current;
-        const ctx = ele.getContext("2d");
-
-  // Get proper height and width for canvas, then set resize handler.
-  ele.width = window.innerWidth;
-  ele.height = window.innerHeight;
-  window.addEventListener(
-    "resize",
-    ({ target: { innerWidth, innerHeight } }) => {
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-    },
-    false
-  );
-
-  const startAnimation = () => {
-    // Use a closure here to keep internal state.
-    let lastX = 0;
-    let lastY = 0;
-    let currX = 0;
-    let currY = 0;
-
-    const update = () => {
-      ctx.beginPath();
-      ctx.lineWidth = 7;
-      ctx.moveTo(lastX, lastY);
-      ctx.lineTo(currX, currY);
-      ctx.strokeStyle = "#b200f0";
-      ctx.stroke();
-
-      lastX = currX;
-      lastY = currY;
-
-      // Fade out the previous tails
-      ctx.fillStyle = `rgba(0, 0, 0, 0.1)`;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Request an animation frame to update it for a smooth 60fps independent of mousemove updates.
-      requestAnimationFrame(update);
+    public state = {
+        cHeight: document.body.clientHeight,
+        cWidth: document.body.clientWidth,
     };
 
-    // On mouse move update cursor position.
-    window.addEventListener(
-      "mousemove",
-      ({ pageX, pageY }) => {
-        currX = pageX;
-        currY = pageY;
-      },
-      false
-    );
+    public componentDidMount() {
+        this.startAnimation();
+    }
 
-    // Start the update cycle.
-    update();
-  };
+    public startAnimation = () => {
+        const canvas = this.canvas.current;
+        const ctx = canvas.getContext("2d");
+        const points = [];
 
-  startAnimation();
+        const addPoint = (x: number, y: number) => {
+            const point = new Point(x, y);
+            points.push(point);
+        };
+
+        document.addEventListener("mousemove", ({ clientX, clientY }) => {
+            addPoint(clientX - canvas.offsetLeft, clientY - canvas.offsetTop);
+        }, false);
+
+        const animatePoints = () => {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            const duration = 0.7 * (1 * 1000) / 60; // Last 80% of a frame per point
+
+            for (let i = 0; i < points.length; ++i) {
+                const point = points[i];
+                let lastPoint;
+
+                if (points[i - 1] !== undefined) {
+                    lastPoint = points[i - 1];
+                } else {
+                    lastPoint = point;
+                }
+
+                point.lifetime += 1;
+
+                if (point.lifetime > duration) {
+                    // If the point dies, remove it.
+                    points.shift();
+                } else {
+                    // Otherwise animate it:
+
+                    // As the lifetime goes on, lifePercent goes from 0 to 1.
+                    const lifePercent = (point.lifetime / duration);
+                    const spreadRate = 7 * (1 - lifePercent);
+
+                    ctx.lineJoin = "round";
+                    ctx.lineWidth = spreadRate;
+
+                    // As time increases decrease r and b, increase g to go from purple to green.
+                    const red = Math.floor(190 - (190 * lifePercent));
+                    const green = 0;
+                    const blue = Math.floor(210 + (210 * lifePercent));
+                    ctx.strokeStyle = `rgb(${red},${green},${blue}`;
+
+                    ctx.beginPath();
+
+                    ctx.moveTo(lastPoint.x, lastPoint.y);
+                    ctx.lineTo(point.x, point.y);
+
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
+            requestAnimationFrame(animatePoints);
+        };
+
+        animatePoints();
     }
 
     public render() {
+        const { cHeight, cWidth } = this.state;
         const module = (
-            <canvas width="1345px" height="979px" ref = { this.canvas }>
-                { this.props.children }
-            </canvas>
+            <canvas className = "canvas" width = { cWidth } height = { cHeight } ref = { this.canvas }></canvas>
         );
 
         return module;
