@@ -24,6 +24,11 @@ const Button = Loadable({
     loading: Loading,
     timeout,
 });
+const AnimationPoints = Loadable({
+    loader: () => import("@containers/animationPoints/index"),
+    loading: Loading,
+    timeout,
+})
 
 const routerConfig = [{
     component: Home,
@@ -41,6 +46,10 @@ const routerConfig = [{
     component: Button,
     exact: true,
     path: "/button",
+}, {
+    component: AnimationPoints,
+    exact: true,
+    path: "/animationPoints",
 }];
 
 export default routerConfig;

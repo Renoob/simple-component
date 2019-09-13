@@ -1,4 +1,3 @@
-import Theme from "@components/theme";
 import Navigation from "@containers/navigation";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
@@ -9,7 +8,6 @@ class Main extends React.Component<RouteComponentProps> {
     public render() {
         const module = (
             <>
-                <Theme />
                 <Navigation />
                 <div style = {{ marginLeft: "300px" }}>
                     <Switch>

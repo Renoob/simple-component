@@ -10,6 +10,9 @@ class Navigation extends React.Component {
                 <NavLink exact to = "/button" activeClassName = { styles.active }>按钮 Button</NavLink>
                 <NavLink exact to = "/countDown" activeClassName = { styles.active }>倒计时 CountDown</NavLink>
                 <NavLink exact to = "/modal" activeClassName = { styles.active }>弹窗 Modal</NavLink>
+                <NavLink exact to = "/animationPoints" activeClassName = { styles.active }>
+                    鼠标轨迹 AnimationPoints
+                </NavLink>
             </div>
         );
         return module;
