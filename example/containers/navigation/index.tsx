@@ -13,6 +13,7 @@ class Navigation extends React.Component {
                 <NavLink exact to = "/animationPoints" activeClassName = { styles.active }>
                     鼠标轨迹 AnimationPoints
                 </NavLink>
+                <NavLink exact to = "/input" activeClassName = { styles.active }>输入框 Input</NavLink>
             </div>
         );
         return module;
