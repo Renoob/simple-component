@@ -11,6 +11,9 @@ interface IModalProps {
 class Modal extends React.Component<IModalProps, {}> {
 
     public modal: Element;
+    public state = {
+        scrollTop: 0, // 滚动条距离顶部距离
+    };
 
     public componentDidMount() {
         if (this.props.visible) {
@@ -30,11 +33,17 @@ class Modal extends React.Component<IModalProps, {}> {
         if (this.props.visible !== prevProps.visible) {
             // overflow
             if (this.props.visible) {
-                document.documentElement.style.overflow = "hidden";
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                this.setState({ scrollTop });
                 document.body.style.overflow = "hidden";
+                document.body.style.position = "fixed";
+                document.body.style.top = -scrollTop + "px";
             } else {
-                document.documentElement.style.overflow = "";
                 document.body.style.overflow = "";
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.documentElement.scrollTop = this.state.scrollTop;
+                document.body.scrollTop = this.state.scrollTop;
             }
             this.renderModal();
         }
