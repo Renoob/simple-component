@@ -14,6 +14,7 @@ class Navigation extends React.Component {
                     鼠标轨迹 AnimationPoints
                 </NavLink>
                 <NavLink exact to = "/input" activeClassName = { styles.active }>输入框 Input</NavLink>
+                <NavLink exact to = "/loading" activeClassName = { styles.active }>加载中 Loading</NavLink>
             </div>
         );
         return module;

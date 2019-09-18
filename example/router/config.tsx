@@ -1,37 +1,42 @@
 import * as React from "react";
 import * as Loadable from "react-loadable";
 
-const Loading = () => <div></div>;
+const Load = () => <div></div>;
 const timeout = 1000;
 
 const Home = Loadable({
     loader: () => import("@containers/home/index"),
-    loading: Loading,
+    loading: Load,
     timeout,
 });
 const CountDown = Loadable({
     loader: () => import("@containers/countDown/index"),
-    loading: Loading,
+    loading: Load,
     timeout,
 });
 const Modal = Loadable({
     loader: () => import("@containers/modal/index"),
-    loading: Loading,
+    loading: Load,
     timeout,
 });
 const Button = Loadable({
     loader: () => import("@containers/button/index"),
-    loading: Loading,
+    loading: Load,
     timeout,
 });
 const AnimationPoints = Loadable({
     loader: () => import("@containers/animationPoints/index"),
-    loading: Loading,
+    loading: Load,
     timeout,
 });
 const Input = Loadable({
     loader: () => import("@containers/Input/index"),
-    loading: Loading,
+    loading: Load,
+    timeout,
+});
+const Loading = Loadable({
+    loader: () => import("@containers/loading/index"),
+    loading: Load,
     timeout,
 });
 
@@ -59,6 +64,10 @@ const routerConfig = [{
     component: Input,
     exact: true,
     path: "/input",
+}, {
+    component: Loading,
+    exact: true,
+    path: "/loading",
 }];
 
 export default routerConfig;
