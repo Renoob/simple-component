@@ -13,6 +13,7 @@
         "moduleResolution": "node",
         "baseUrl": ".",
         "paths": {
+            "@server/*": ["./server/*"],
             "@components/*": ["./components/*"],
             "@example/*": ["./example/*"],
             "@fonts/*": ["./example/fonts/*"],
@@ -27,7 +28,8 @@
     },
     "include": [
         "./components/**/*",
-        "./example/**/*"
+        "./example/**/*",
+        "./server/**/*"
     ],
     "exclude": [
         "node_modules"

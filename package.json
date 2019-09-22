@@ -4,6 +4,7 @@
   "description": "react组件库",
   "main": "index.js",
   "scripts": {
+    "start": "tsc ./server/server.ts && nodemon ./server/server.js",
     "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --open",
     "build": "rimraf ./dist/* && webpack --config ./build/webpack.config.prod.js --progress"
   },
@@ -16,7 +17,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.5.5",
-    "@types/node": "^12.7.2",
+    "@types/node": "^12.7.5",
     "@types/webpack-env": "^1.14.0",
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.2",
@@ -47,6 +48,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.5.5",
+    "@types/express": "^4.17.1",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.8.5",
     "@types/react-loadable": "^5.5.1",
@@ -56,6 +58,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
     "core-js": "^2.6.9",
+    "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
