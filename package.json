@@ -8,7 +8,9 @@
     "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --open",
     "build": "rimraf ./dist/* && webpack --config ./build/webpack.config.prod.js --progress",
     "lint": "run-s lint:*",
-    "lint:stylelint": "stylelint **/*.css **/*.sass **/*.scss **/*.less"
+    "lint:stylelint": "stylelint **/*.css **/*.sass **/*.scss **/*.less",
+    "lint:eslint": "eslint **/*.js",
+    "lint:tslint": "tslint -c tslint.json **/*.ts **/*.tsx **/*.d.ts"
   },
   "author": "Renoob",
   "license": "ISC",

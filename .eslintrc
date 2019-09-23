@@ -12,5 +12,10 @@
         "node": true,
         "es6": true,
         "amd": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }
