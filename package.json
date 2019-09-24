@@ -6,8 +6,9 @@
   "author": "Renoob",
   "license": "ISC",
   "scripts": {
-    "start": "tsc ./server/server.ts && nodemon ./server/server.js",
-    "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --open",
+    "dev": "run-p dev:*",
+    "dev:server": "nodemon --config ./nodemon.json",
+    "dev:client": "webpack-dev-server --config ./build/webpack.config.dev.js",
     "build": "rimraf ./dist/* && webpack --config ./build/webpack.config.prod.js --progress",
     "lint": "run-s lint:*",
     "lint:stylelint": "stylelint **/*.css **/*.sass **/*.scss **/*.less",
@@ -21,7 +22,9 @@
     }
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.2",
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.6.2",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
@@ -43,6 +46,7 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
+    "nodemon": "^1.19.2",
     "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
@@ -52,6 +56,7 @@
     "stylelint": "^11.0.0",
     "stylelint-config-standard": "^19.0.0",
     "ts-loader": "^6.0.4",
+    "ts-node": "^8.4.1",
     "tslint": "^5.19.0",
     "typescript": "^3.5.3",
     "url-loader": "^2.1.0",
