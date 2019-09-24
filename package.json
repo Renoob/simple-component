@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "react组件库",
   "main": "index.js",
+  "author": "Renoob",
+  "license": "ISC",
   "scripts": {
     "start": "tsc ./server/server.ts && nodemon ./server/server.js",
     "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --open",
@@ -12,8 +14,12 @@
     "lint:eslint": "eslint **/*.js",
     "lint:tslint": "tslint -c tslint.json **/*.ts **/*.tsx **/*.d.ts"
   },
-  "author": "Renoob",
-  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": ""
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
@@ -32,6 +38,7 @@
     "eslint-plugin-react": "^7.14.3",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.5",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
