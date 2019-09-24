@@ -1,4 +1,4 @@
-import Loading from "@components/loading";
+import { Loading } from "@components/index";
 import * as React from "react";
 
 class LoadingExample extends React.Component {

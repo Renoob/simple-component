@@ -1,4 +1,4 @@
-import CountDown from "@components/countDown";
+import { CountDown } from "@components/index";
 import * as React from "react";
 
 class CountDownExample extends React.Component {

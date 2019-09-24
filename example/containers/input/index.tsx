@@ -1,4 +1,4 @@
-import Input from "@components/input";
+import { Input } from "@components/index";
 import * as React from "react";
 
 class InputExample extends React.Component {

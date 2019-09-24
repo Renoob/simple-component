@@ -1,5 +1,4 @@
-import Button from "@components/button";
-import Modal from "@components/modal";
+import { Button, Modal } from "@components/index";
 import * as React from "react";
 
 class ModalExample extends React.Component {

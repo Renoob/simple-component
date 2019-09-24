@@ -1,4 +1,4 @@
-import AnimationPoints from "@components/animationPoints";
+import { AnimationPoints } from "@components/index";
 import * as React from "react";
 
 class AnimationPointsExample extends React.Component {

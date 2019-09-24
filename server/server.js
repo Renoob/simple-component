@@ -1,6 +1,12 @@
+import path from "path";
 import express from "express";
+import 'colors';
 const app = express();
 const port = 3000;
 
-app.get("/", (req, res) => res.send("Hello World"));
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const distPath = path.resolve(__dirname, '../dist');
+app.use(express.static(distPath));
+app.get('*', (_, res) => {
+    res.sendFile(`${distPath}/index.html`);
+});
+app.listen(port, () => console.log(`Express: Listening on port ${port}, open up http://localhost:${port}/ in your broswer!`.green));

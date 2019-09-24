@@ -17,7 +17,7 @@ class Theme extends React.Component<{}, {}> {
     public startAnimation = () => {
         const canvas = this.canvas.current;
         const ctx = canvas.getContext("2d");
-        const points = [];
+        const points: Array<{lifetime: number, x: number, y: number}> = [];
 
         const addPoint = (x: number, y: number) => {
             const point = new Point(x, y);
