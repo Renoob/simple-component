@@ -1,6 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV === "development";
 
 module.exports = {
     entry: {
@@ -63,12 +65,103 @@ module.exports = {
                     publicPath: "../fonts"
                 }
             }]
+        }, {
+            test: /\.css$/,
+            use: [
+                devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                "css-loader",
+                {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname, "./postcss.config.js")
+                        }
+                    }
+                }
+            ]
+        }, {
+            test: /^(?!.*\.module).*\.(scss|sass)$/, // 普通模式
+            use: [
+                devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                "css-loader",
+                {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname, "./postcss.config.js")
+                        }
+                    }
+                },
+                "sass-loader"
+            ]
+        }, {
+            test: /^(.*\.module).*\.(scss|sass)$/, // css module模式
+            use: [
+                devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                {
+                    loader: "css-loader",
+                    options: {
+                        modules: {
+                            localIdentName: "[local]_[hash:base64:5]",
+                        },
+                    }
+                },
+                {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname, "./postcss.config.js")
+                        }
+                    }
+                },
+                "sass-loader"
+            ]
+        }, {
+            test: /^(?!.*\.module).*\.less$/, // 普通模式
+            use: [
+                devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                "css-loader",
+                {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname, "./postcss.config.js")
+                        }
+                    }
+                },
+                "less-loader"
+            ]
+        }, {
+            test: /^(.*\.module).*\.less$/, // css module模式
+            use: [
+                devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                {
+                    loader: "css-loader",
+                    options: {
+                        modules: {
+                            localIdentName: "[local]_[hash:base64:5]",
+                        },
+                    }
+                },
+                {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname, "./postcss.config.js")
+                        }
+                    }
+                },
+                "less-loader"
+            ]
         }]
     },
     plugins: [
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: path.resolve(__dirname, "../views/index.html")
+        }),
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].[chunkhash:5].css"
         }),
         new webpack.ProvidePlugin({
             _: "lodash"

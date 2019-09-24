@@ -6,7 +6,7 @@
   "author": "Renoob",
   "license": "ISC",
   "scripts": {
-    "dev": "run-p dev:*",
+    "dev": "cross-env NODE_ENV=development run-p dev:*",
     "dev:server": "nodemon --config ./nodemon.json",
     "dev:client": "webpack-dev-server --config ./build/webpack.config.dev.js",
     "build": "rimraf ./dist/* && webpack --config ./build/webpack.config.prod.js --progress",
@@ -35,6 +35,7 @@
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.1.0",
     "eslint-loader": "^2.2.1",
