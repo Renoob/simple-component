@@ -1,4 +1,4 @@
-.button{
+.button {
     position: relative;
     font-size: inherit;
     font-family: inherit;
@@ -7,7 +7,7 @@
     outline: none;
     border: none;
     background-color: hsl(236, 32%, 26%);
-    &::before{
+    &::before {
         content: '';
         z-index: -1;
         position: absolute;
@@ -19,9 +19,9 @@
         transform-origin: center;
         transform: scale(1);
     }
-    &:hover{
+    &:hover {
         cursor: pointer;
-        &::before{
+        &::before {
             transition: all 0.5s ease-in-out;
             transform-origin: center;
             transform: scale(1.5);

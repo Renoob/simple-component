@@ -30,7 +30,7 @@ const AnimationPoints = Loadable({
     timeout,
 });
 const Input = Loadable({
-    loader: () => import("@containers/Input/index"),
+    loader: () => import("@containers/input/index"),
     loading: Load,
     timeout,
 });

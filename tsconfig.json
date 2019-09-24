@@ -27,7 +27,7 @@
     },
     "include": [
         "./components/**/*",
-        "./example/**/*",
+        "./example/**/*"
     ],
     "exclude": [
         "node_modules"

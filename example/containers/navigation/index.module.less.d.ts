@@ -1,2 +1,3 @@
-export const navigation: string
-export const active: string
+export const navigation: string;
+
+export const active: string;
