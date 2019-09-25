@@ -10,7 +10,6 @@ module.exports = merge(base, {
         contentBase: path.resolve(__dirname, "../dist"),
         port: "3001",
         hot: true,
-        open: true
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

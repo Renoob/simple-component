@@ -7,9 +7,11 @@
   "license": "ISC",
   "scripts": {
     "dev": "cross-env NODE_ENV=development run-p dev:*",
-    "dev:server": "nodemon --config ./nodemon.json",
     "dev:client": "webpack-dev-server --config ./build/webpack.config.dev.js",
-    "build": "rimraf ./dist/* && webpack --config ./build/webpack.config.prod.js --progress",
+    "dev:server": "nodemon --config ./nodemon.json",
+    "build": "cross-env NODE_ENV=production run-s build:*",
+    "build:client": "rimraf ./dist/* && webpack --config ./build/webpack.config.prod.js --progress",
+    "build:server": "nodemon --config ./nodemon.json",
     "lint": "run-s lint:*",
     "lint:stylelint": "stylelint **/*.css **/*.sass **/*.scss **/*.less",
     "lint:eslint": "eslint **/*.js",

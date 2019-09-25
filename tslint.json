@@ -3,5 +3,8 @@
     "rulesDirectory": ["./components", "./example"],
     "linterOptions": {
         "exclude": ["**/node_modules/**"]
+    },
+    "rules": {
+        "no-var-requires": false
     }
 }
