@@ -4,8 +4,9 @@ import "./index.less";
 class Input extends React.Component {
     public render() {
         const module = (
-            <div>
-                <input />
+            <div className = "input">
+                <input className = "input__box" />
+                <span></span>
             </div>
         );
         return module;

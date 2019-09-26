@@ -1,11 +1,14 @@
 import { AnimationPoints } from "@components/index";
 import * as React from "react";
 
-class AnimationPointsExample extends React.Component {
+const styles = require("./index.module.less");
 
+class AnimationPointsExample extends React.Component {
     public render() {
         return (
-            <AnimationPoints></AnimationPoints>
+            <div className = { styles.animationPoints }>
+                <AnimationPoints height = { 800 } width = { 500 }></AnimationPoints>
+            </div>
         );
     }
 }

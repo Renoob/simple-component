@@ -2,12 +2,17 @@ import * as React from "react";
 import "./index.less";
 import Point from "./point";
 
-class Theme extends React.Component<{}, {}> {
+interface IAnimationPointsProps {
+    height: number;
+    width: number;
+}
+
+class AnimationPoints extends React.Component<IAnimationPointsProps, {}> {
     public canvas = React.createRef<HTMLCanvasElement>();
 
     public state = {
-        cHeight: document.body.clientHeight,
-        cWidth: document.body.clientWidth,
+        cHeight: this.props.height,
+        cWidth: this.props.width,
     };
 
     public componentDidMount() {
@@ -88,4 +93,4 @@ class Theme extends React.Component<{}, {}> {
     }
 }
 
-export default Theme;
+export default AnimationPoints;
