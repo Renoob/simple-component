@@ -39,6 +39,11 @@ const Loading = Loadable({
     loading: Load,
     timeout,
 });
+const Waterfall = Loadable({
+    loader: () => import("@containers/waterfall/index"),
+    loading: Load,
+    timeout,
+});
 
 const routerConfig = [{
     component: Home,
@@ -68,6 +73,10 @@ const routerConfig = [{
     component: Loading,
     exact: true,
     path: "/loading",
+}, {
+    component: Waterfall,
+    exact: true,
+    path: "/waterfall",
 }];
 
 export default routerConfig;

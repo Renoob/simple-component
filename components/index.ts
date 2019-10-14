@@ -1,8 +1,13 @@
-import AnimationPoints from "./animationPoints";
-import Button from "./button";
-import CountDown from "./countDown";
-import Input from "./input";
-import Loading from "./loading";
-import Modal from "./modal";
+export { default as AnimationPoints } from "./animationPoints";
 
-export { AnimationPoints, Button, CountDown, Input, Loading, Modal };
+export { default as Button } from "./button";
+
+export { default as CountDown } from "./countDown";
+
+export { default as Input } from "./input";
+
+export { default as Loading } from "./loading";
+
+export { default as Modal } from "./modal";
+
+export { default as Waterfall } from "./waterfall";

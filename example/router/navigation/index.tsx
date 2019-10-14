@@ -16,6 +16,7 @@ class Navigation extends React.Component {
                 </NavLink>
                 <NavLink exact to = "/input" activeClassName = { styles.active }>输入框 Input</NavLink>
                 <NavLink exact to = "/loading" activeClassName = { styles.active }>加载中 Loading</NavLink>
+                <NavLink exact to = "/waterfall" activeClassName = { styles.active }>瀑布流布局 Waterfall</NavLink>
             </div>
         );
         return module;
