@@ -2,9 +2,10 @@ import * as React from "react";
 import "./index.less";
 
 interface IWaterfallProps {
+    direction: string; // 朝向(row-横向，column-纵向)
     children: React.ReactNode;
-    columnCount?: number;
-    columnGap?: number;
+    columnCount?: number; // 列数
+    columnGap?: number; // 列间距
 }
 
 interface ILiProps {
@@ -12,6 +13,10 @@ interface ILiProps {
 }
 
 class Waterfall extends React.Component<IWaterfallProps, {}> {
+    public static defaultProps = {
+        direction: "column",
+    };
+
     public static Li = ({ children }: ILiProps) => (
         <li className = "waterfall__li">{ children }</li>
     )
@@ -19,10 +24,12 @@ class Waterfall extends React.Component<IWaterfallProps, {}> {
     public waterfallRef = React.createRef<HTMLUListElement>();
 
     public componentDidUpdate() {
-        this.setStyles();
+        if (this.props.direction === "column") {
+            this.setColumnStyles();
+        }
     }
 
-    public setStyles = () => {
+    public setColumnStyles = () => {
         if (this.props.columnCount > 0) {
             this.waterfallRef.current.style.columnCount = String(this.props.columnCount);
         }
@@ -32,8 +39,11 @@ class Waterfall extends React.Component<IWaterfallProps, {}> {
     }
 
     public render() {
+        const { direction } = this.props;
         const module = (
-            <ul className = "waterfall" ref = { this.waterfallRef }>
+            <ul className = { `waterfall ${ direction === "row" ? "waterfall--row" : "waterfall--column" }` }
+                ref = { this.waterfallRef }
+                >
                 { this.props.children }
             </ul>
         );
