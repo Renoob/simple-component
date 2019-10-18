@@ -35,15 +35,32 @@ class WaterfallExample extends React.Component {
 
         const module = (
             <div className = { styles.waterfallExample }>
-                <Waterfall>
-                    {
-                        list.map((item: string, index) => (
-                            <Waterfall.Li key = { index }>
-                                <span className = { styles[item] }>{ item }</span>
-                            </Waterfall.Li>
-                        ))
-                    }
-                </Waterfall>
+                <div className = { styles.exampleItem }>
+                    <div>纵向</div>
+                    <Waterfall>
+                        {
+                            list.map((item: string, index) => (
+                                <Waterfall.Li key = { index }>
+                                    <div className = { styles[item] }>{ item }</div>
+                                </Waterfall.Li>
+                            ))
+                        }
+                    </Waterfall>
+                </div>
+                <div className = { styles.exampleItem }>
+                    <div>横向</div>
+                    <Waterfall
+                        direction = "row"
+                    >
+                        {
+                            list.map((item: string, index) => (
+                                <Waterfall.Li key = { index }>
+                                    <div className = { styles[item] }>{ item }</div>
+                                </Waterfall.Li>
+                            ))
+                        }
+                    </Waterfall>
+                </div>
             </div>
         );
         return module;

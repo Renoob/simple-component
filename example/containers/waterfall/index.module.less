@@ -1,21 +1,27 @@
 .waterfallExample {
-    .low, .middle, .high {
-        display: inline-block;
-        width: 100px;
-        text-align: center;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    .low {
-        height: 50px;
-        line-height: 50px;
-    }
-    .middle {
-        height: 75px;
-        line-height: 75px;
-    }
-    .high {
-        height: 100px;
-        line-height: 100px;
+    display: flex;
+    .exampleItem {
+        width: 300px;
+        margin-right: 50px;
+        .low, .middle, .high {
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .low {
+            height: 50px;
+            line-height: 50px;
+        }
+        .middle {
+            height: 75px;
+            line-height: 75px;
+        }
+        .high {
+            height: 100px;
+            line-height: 100px;
+        }
     }
 }
