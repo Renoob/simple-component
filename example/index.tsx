@@ -1,5 +1,5 @@
+import "@components/style";
 import App from "@router/app";
-import "@styles/index.css";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
